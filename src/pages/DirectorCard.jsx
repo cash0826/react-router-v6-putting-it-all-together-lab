@@ -2,7 +2,7 @@ import { Link, Outlet, useOutletContext, useParams } from "react-router-dom";
 
 function DirectorCard() {
     // Replace me
-    const { directors } = useOutletContext();
+    const { directors, updatedDirectors } = useOutletContext();
     const { id } = useParams();
 
     // show a loading state while directors are being fetched
@@ -30,7 +30,7 @@ function DirectorCard() {
         </ul>
         <Link to={`movies/new`}>Add New Movie</Link>
         {/* Movie components should render here depending on route */}
-        <Outlet context={{ directors }}/>
+        <Outlet context={{ directors, updatedDirectors }}/>
         </div>
     )
 }
