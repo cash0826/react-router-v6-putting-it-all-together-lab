@@ -33,7 +33,7 @@ function DirectorForm() {
 
   return (
     <div>
-      <h2>Add New Director</h2>
+      {/* <h2>Add New Director</h2> */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
