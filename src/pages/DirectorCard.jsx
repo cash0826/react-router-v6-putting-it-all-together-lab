@@ -1,7 +1,16 @@
+import { Link, Outlet, useOutletContext, useParams } from "react-router-dom";
 
 function DirectorCard() {
     // Replace me
-    const director = null
+    const { directors } = useOutletContext();
+    const { id } = useParams();
+
+    // show a loading state while directors are being fetched
+    if (directors.length === 0) {
+        return <h2>Loading directors...</h2>
+    }
+
+    const director = directors.find(d => d.id === id);
 
     if (!director) {
         return <h2>Director not found.</h2>
@@ -15,12 +24,13 @@ function DirectorCard() {
         <ul>
             {director.movies.map((movie) => (
             <li key={movie.id}>
-                <a>{movie.title}</a>
+                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
             </li>
             ))}
         </ul>
         <Link to={`movies/new`}>Add New Movie</Link>
-        {/* Movie compoenents should render here depending on route */}
+        {/* Movie components should render here depending on route */}
+        <Outlet context={{ directors }}/>
         </div>
     )
 }
